@@ -1,11 +1,13 @@
 package message;
 
+
 import model.CadastraGanho;
+import model.CadastraGastos;
 
-import java.util.Scanner;
+import java.util.Calendar;
+import java.util.List;
 
-
-public class montaTelas
+public class MontaTelas
 {
 	public String telaConsulta(){
 
@@ -58,8 +60,38 @@ public class montaTelas
 		return bodybuilder.toString();
 	}
 
-	public String mostraGastos() {
-		return "s";
+	public String mostraGastos(List<CadastraGastos> listaGastos){
+		StringBuilder bodybuilder = new StringBuilder();
+		bodybuilder.append(" -------- RELATÓRIO DE GASTOS -------");
+		for (int x = 0; x < listaGastos.size(); x++){
+
+			String dataFormatada = String.format("%02d/%02d/%04d",
+					listaGastos.get(x).getData().get(Calendar.DAY_OF_MONTH),
+					listaGastos.get(x).getData().get(Calendar.MONTH) + 1,
+					listaGastos.get(x).getData().get(Calendar.YEAR));
+
+			bodybuilder.append("\n\nGasto nº "+ (x+1));
+			bodybuilder.append("\nValor: "+ listaGastos.get(x).getValor());
+			bodybuilder.append("\nData: "+ dataFormatada);
+			bodybuilder.append("\nTipo de gasto: "+ listaGastos.get(x).getTipoDeGasto());
+			bodybuilder.append("\nForma de pagamento: "+ listaGastos.get(x).getFormaDePagamento());
+		}
+
+		return bodybuilder.toString();
 	}
+
+	public String mostraGanhos(List<CadastraGanho> listaGanhos){
+		StringBuilder bodybuilder = new StringBuilder();
+		bodybuilder.append(" -------- RELATÓRIO DE GANHOS -------");
+		for (int x = 0; x < listaGanhos.size(); x++){
+
+			bodybuilder.append("\n\nGanho nº "+ (x+1));
+			bodybuilder.append("\nNome: "+ listaGanhos.get(x).getNome());
+			bodybuilder.append("\nValor: "+ listaGanhos.get(x).getValor());
+		}
+
+		return bodybuilder.toString();
+	}
+
 
 }
