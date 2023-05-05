@@ -41,7 +41,7 @@ public class Main
 			}
 
 			if (opcaoCoonsulta == 5) {
-				System.out.println(ConsultaGastoMesAno.consultaGastoMesAno(listaGastos));
+				System.out.println(ConsultaGastoMesAno.consultaGastoMesAno(listaGastos, listaGanhos));
 			}
 			if (opcaoCoonsulta == 6){
 				continuar = false;

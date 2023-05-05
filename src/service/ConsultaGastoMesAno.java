@@ -1,5 +1,6 @@
 package service;
 
+import model.CadastraGanho;
 import model.CadastraGastos;
 
 import java.text.SimpleDateFormat;
@@ -8,7 +9,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ConsultaGastoMesAno {
-    public static String consultaGastoMesAno(List<CadastraGastos> listaGastos) {
+    public static String consultaGastoMesAno(List<CadastraGastos> listaGastos, List<CadastraGanho> listaGanhos) {
+        double gastosMes = 0;
+        double ganhosMes = 0;
+        double saldoMes = 0;
+
         System.out.println("Informe o mês: ");
         Scanner in4 = new Scanner(System.in);
         int mes = 0;
@@ -25,14 +30,19 @@ public class ConsultaGastoMesAno {
         for (int x = 0; x < listaGastos.size(); x++){
             // adicionar validação de ano tmb
             if (listaGastos.get(x).getData().get(Calendar.MONTH) == calendarioJava.get(Calendar.MONTH) && listaGastos.get(x).getData().get(Calendar.YEAR) == calendarioJava.get(Calendar.YEAR)){
-                String data = formatter.format(listaGastos.get(x).getData().getTime());
-                body.append("\n\nGasto nº "+ (x+1));
-                body.append("\nValor: "+ listaGastos.get(x).getValor());
-                body.append("\nData: "+ data);
-                body.append("\nTipo de gasto: "+ listaGastos.get(x).getTipoDeGasto());
-                body.append("\nForma de pagamento: "+ listaGastos.get(x).getFormaDePagamento());
+                gastosMes += listaGastos.get(x).getValor();
             }
         }
+        for (int x = 0; x < listaGanhos.size(); x++){
+            if (listaGanhos.get(x).getDataGanho().get(Calendar.MONTH) == calendarioJava.get(Calendar.MONTH) && listaGanhos.get(x).getDataGanho().get(Calendar.YEAR) == calendarioJava.get(Calendar.YEAR)){
+                ganhosMes += listaGanhos.get(x).getValor();
+            }
+        }
+        saldoMes = ganhosMes - gastosMes;
+        body.append("\n\n--- Lista de gastos do mes "+mes+" no ano "+ano+"---\n");
+        body.append("Ganhos: "+ganhosMes+"\n");
+        body.append("Gastos: "+gastosMes+"\n");
+        body.append("Saldo: "+saldoMes+"\n");
         return body.toString();
     }
 }
