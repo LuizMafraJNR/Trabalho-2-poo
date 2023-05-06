@@ -5,6 +5,7 @@ import enumareted.tipoDeGasto;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class CadastraGastos
 {
@@ -17,7 +18,6 @@ public class CadastraGastos
 
 	public CadastraGastos(double valor, Calendar data,Enum<tipoDeGasto> tipoDeGasto, String formaDePagamento)
 	{
-
 		this.valor = valor;
 		this.data = data;
 		this.tipoDeGasto = tipoDeGasto;
@@ -84,11 +84,12 @@ public class CadastraGastos
 	@Override
 	public String toString()
 	{
+		String dataFormatada = String.format("%02d/%02d/%04d", getData().get(Calendar.DAY_OF_MONTH), getData().get(Calendar.MONTH) + 1, getData().get(Calendar.YEAR));
 		StringBuilder builder = new StringBuilder();
 		builder.append("\n\n\n");
 		builder.append("Gasto cadastrado!");
 		builder.append("\nValor: " +getValor());
-		builder.append("\nData: " +getData());
+		builder.append("\nData: " +dataFormatada);
 		builder.append("\nTipo de Gasto: " +getTipoDeGasto());
 		builder.append("\nForma de Pagamento: " +getFormaDePagamento());
 		builder.append("\n\n");

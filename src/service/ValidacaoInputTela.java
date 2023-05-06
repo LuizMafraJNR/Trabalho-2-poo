@@ -1,6 +1,8 @@
+package service;
+
 import enumareted.tipoDeGasto;
 
-public class validacaoInputTela
+public class ValidacaoInputTela
 {
 
 	public static String validaFormaPagamento(int numero){
