@@ -1,3 +1,4 @@
+import CargaGanho.LerGanho;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -11,6 +12,9 @@ import service.ConsultaGastoMesAno;
 public class Main
 {
 	public static void main(String[] args) throws Exception {
+
+		LerGanho.lerGarnho("C:\\Users\\Mafra\\Documents\\ArquivoMilhao\\CargaGastos.csv");
+
 		List<CadastraGanho> listaGanhos = new ArrayList<>();
 		List<CadastraGastos> listaGastos = new ArrayList<>();
 
@@ -31,19 +35,28 @@ public class Main
 				CadastraGanho ganho = AdicionaGanho.adicionaGanhoUser();
 				listaGanhos.add(ganho);
 			}
-
 			if (opcaoCoonsulta == 3){
+				System.out.println(inicial.digiteLink());
+				String link = in.next();
+				List<CadastraGanho> listaGanhosImport = LerGanho.lerGarnho(link);
+				for (CadastraGanho ganho : listaGanhosImport){
+					listaGanhos.add(ganho);
+				}
+			}
+
+			if (opcaoCoonsulta == 4){
 				System.out.println(inicial.mostraGastos(listaGastos));
 			}
 
-			if(opcaoCoonsulta == 4){
+			if(opcaoCoonsulta == 5){
 				System.out.println(inicial.mostraGanhos(listaGanhos));
 			}
 
-			if (opcaoCoonsulta == 5) {
+			if (opcaoCoonsulta == 6) {
 				System.out.println(ConsultaGastoMesAno.consultaGastoMesAno(listaGastos, listaGanhos));
 			}
-			if (opcaoCoonsulta == 6){
+
+			if (opcaoCoonsulta == 7){
 				continuar = false;
 			}
 		} while (continuar);

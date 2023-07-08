@@ -15,10 +15,11 @@ public class MontaTelas
 		bodybuilder.append(" -------- GESTÃO FINANCEIRA -------");
 		bodybuilder.append("\n1 - Adicionar gasto");
 		bodybuilder.append("\n2 - Adicionar ganho");
-		bodybuilder.append("\n3 - Relatorio de gastos");
-		bodybuilder.append("\n4 - Relatorio de ganhos");
-		bodybuilder.append("\n5 - Relatorio mensal");
-		bodybuilder.append("\n6 - Sair");
+		bodybuilder.append("\n3 - Realizar Carga de ganho");
+		bodybuilder.append("\n4 - Relatorio de gastos");
+		bodybuilder.append("\n5 - Relatorio de ganhos");
+		bodybuilder.append("\n6 - Relatorio mensal");
+		bodybuilder.append("\n7 - Sair");
 		bodybuilder.append("\n");
 		bodybuilder.append("\nSelecione uma opção: ");
 
@@ -93,5 +94,13 @@ public class MontaTelas
 		return bodybuilder.toString();
 	}
 
+	public String digiteLink(){
+		StringBuilder bodyBuilder= new StringBuilder();
+		bodyBuilder.append("\nEscreva o diretiorio do arquivo CSV completo.");
+		bodyBuilder.append("\nLembre-se de passar o arquivo CSV.");
+		bodyBuilder.append("\nIrei deixar um exemplo de como deverá ser feito");
+		bodyBuilder.append("\nDigite aqui: ");
+		return bodyBuilder.toString();
+	}
 
 }
